@@ -1,8 +1,10 @@
 package org.lessons.spring.spring_games.controller;
 
+import org.lessons.spring.spring_games.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,8 +16,7 @@ public class GameController {
 
     @GetMapping
     public String index(Model model) {
-        List<Game> games = gameRepository.findAll(); // ! QUI PRENDERO' I DATI DAL DB
-        model.addAttribute("games", games);// ! oppure model.addAttribute("games, gameRepository.findAll();")
+        model.addAttribute("games", gameRepository.findAll());
         return "games/index";
     }
 

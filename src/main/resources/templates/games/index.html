@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head('Gestione Videogames')}"></head>
+
+<body>
+    <header>
+        <div th:replace="~{fragments/navbar :: navbar('Schianologic Games Arts')}"></div>
+    </header>
+
+    <main class="container">
+        <section class="upper row">
+            <div class="col-12">
+                <h1 class="card-title mb-4 p-4 text-center fw-bold">
+                    Gestionale Videogames
+                </h1>
+            </div>
+        </section>
+        <section class="game-content">
+            <h2 class="text-center">
+                You have <strong>[[${games.size()}]]</strong> games available
+            </h2>
+
+        </section>
+    </main>
+
+    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
+</body>
+
+</html>
