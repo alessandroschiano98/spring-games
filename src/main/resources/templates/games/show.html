@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schianologic's Videogames Arts</title>
+</head>
+
+<body class="sfondohomepage">
+
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar('Schianologic\'s Games Arts')}"></nav>
+        <nav th:replace="~{fragments/head :: head('Schianologic\'s Games Arts')}"></nav>
+    </header>
+
+    <main class="container">
+        <section class="row">
+            <div class="col-12 text-center">
+                <h1 class="welcometext my-5" th:object="${game}">
+                    Title: <span class="fw-bold text-white">[[*{(title)}]]</span>
+                </h1>
+            </div>
+        </section>
+
+        <section class="row game-viewer justify-content-center">
+            <div class="col-5" th:object="${game}">
+                <article class="card">
+                    <h5 class="card-header">Price: <strong>[[*{price}]] €</strong></h5>
+                    <div class="card-img-top text-center p-3">
+                        <img th:src="*{imageUrl}" class="w-50" width="30%" height="auto" alt="game's url" />
+                    </div>
+                    <div class="class text-center">
+                        <span class="card-text"><strong>Release Date: </strong></span>
+                        <span class="card-text">[[${#temporals.format(game.releaseDate, 'dd MMMM yyyy')}]]</span>
+                        <p class="card-text"><strong>Genre:</strong> [[*{genre}]]</p>
+                    </div>
+                    <div class="card-body">
+
+                        <h5 class="card-title fw-bold ">[[*{title}]]</h5>
+                        <p class="card-text">[[*{description}]]</p>
+                        <a th:href="@{/games}" class="btn btn-primary">Back</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+
+
+    </main>
+
+</body>

@@ -39,7 +39,7 @@
                             <td th:text="*{id}"></td>
                             <td th:text="*{title}"></td>
                             <td th:text="*{description}"></td>
-                            <td><span class="price-box" th:text="*{price} + ' €'"></span></td>
+                            <td> <button type="button" class="d-inline btn btn-light btn-sm" disabled th:text="*{price} + ' €'"></button></td>
                             <td>
                                 <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-primary btn-sm">Details</a>
                                 <a th:href="@{/games/edit/{id}(id=*{id})}" class="btn btn-success btn-sm">Edit</a>
