@@ -34,17 +34,31 @@
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
+                    <!-- ! BUTTONS (Actions)-->
                     <tbody>
                         <tr th:each="game : ${games}" th:object="${game}">
                             <td th:text="*{id}"></td>
                             <td th:text="*{title}"></td>
                             <td th:text="*{description}"></td>
-                            <td> <button type="button" class="d-inline btn btn-light btn-sm" disabled th:text="*{price} + ' €'"></button></td>
+                            <!-- ! PRICE -->
+                            <td> <button type="button" class="d-inline btn btn-light btn-sm" disabled
+                                    th:text="*{price} + ' €'"></button></td>
                             <td>
-                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-primary btn-sm">Details</a>
-                                <a th:href="@{/games/edit/{id}(id=*{id})}" class="btn btn-success btn-sm">Edit</a>
+                                <!-- ! DETAILS -->
+                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-primary btn-sm"> <img
+                                        src="https://img.icons8.com/?size=100&id=100039&format=png&color=000000"
+                                        alt="Details icon" style="width: 20px; height: 20px;" /></a>
+                                <!-- ! EDIT (DA MODIFICARE LA ROTTA PER EDIT)--> 
+                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-success btn-sm" title="Edit">
+                                    <img src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"
+                                        alt="Edit icon" style="width: 20px; height: 20px;" />
+                                </a>
+                                <!-- ! DELETE -->
                                 <button type="button" class="d-inline btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    th:data-bs-target="'#delete-modal-' + *{id}">Delete</button>
+                                    th:data-bs-target="'#delete-modal-' + *{id}"> <img
+                                        src="https://img.icons8.com/?size=100&id=99950&format=png&color=000000"
+                                        alt="Delete icon" style="width: 20px; height: 20px;" /></button>
+
 
 
                                 <div class="modal fade" th:id="'delete-modal-' + *{id}" data-bs-backdrop="static"
@@ -87,10 +101,9 @@
             </div>
         </section>
 
+
     </main>
-
-
-
+ 
 
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
