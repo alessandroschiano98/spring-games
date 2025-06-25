@@ -12,7 +12,7 @@
         <section class="upper row">
             <div class="col-12">
                 <h1 class="card-title mb-4 p-4 text-center fw-bold">
-                    Gestionale Videogames
+                    Games Management System
                 </h1>
             </div>
         </section>
@@ -22,8 +22,74 @@
             </h2>
 
         </section>
+        <section class="row games">
+            <div class="col-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="game : ${games}" th:object="${game}">
+                            <td th:text="*{id}"></td>
+                            <td th:text="*{title}"></td>
+                            <td th:text="*{description}"></td>
+                            <td th:text="*{price} + ' €'"></td>
+                            <td>
+                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-primary btn-sm">Dettagli</a>
+                                <a th:href="@{/games/edit/{id}(id=*{id})}" class="btn btn-success btn-sm">Modifica</a>
+                                <button type="button" class="d-inline btn btn-warning btn-sm" data-bs-toggle="modal"
+                                th:data-bs-target="'#delete-modal-' + *{id}">Elimina</button>
+
+
+                                <div class="modal fade" th:id="'delete-modal-' + *{id}" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminazione di
+                                                <strong>"[[*{title}]]"</strong></h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                               Are you sure eliminate this game?
+                                                <strong>"[[*{title}]]"</strong>([[*{id}]]),<strong>ingredienti:</strong> <em>[[*{description}]]</em>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Chiudi</button>
+                                            <form th:action="@{|/games/delete/*{id}|}" method="post" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn">Cancella</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
     </main>
 
+
+
+    
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
 
