@@ -39,7 +39,10 @@
 
                         <h5 class="card-title fw-bold ">[[*{title}]]</h5>
                         <p class="card-text">[[*{description}]]</p>
-                        <a th:href="@{/games}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/games}" class="btn btn-primary">Back in List</a>
+                        <a th:href="@{/games/show/{id}(id=${game.id})}" class="btn btn-primary">Edit</a>
+
+
                     </div>
                 </article>
             </div>

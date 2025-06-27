@@ -16,28 +16,75 @@
 
 
     <main class="container">
+        <div class="col-12">
+            <h1 class="card-title mb-4 p-4 text-center fw-bold text-white">
+                Create New Game
+            </h1>
+        </div>
+        <section class="games row">
+            <div class="col-12 text-center">
+                <ul>
+                    <li th:each="err : ${#fields.allErrors()}" th:text="${err}">
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12">
+                <form th:action="@{/games/create}" method="POST" th:object="${game}" id="games-creation-form">
+                    <div class="my-5 fw-bold text-white">
+                        <label for="titleInput" class="form-label">Title:</label>
+                        <input id="titleInput" type="text" class="form-control mb-3" th:field="*{title}"
+                        th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="descriptionInput" class="form-label">Description:</label>
+                        <input id="descriptionInput" type="text" class="form-control mb-3" th:field="*{description}"
+                            th:errorClass="is-invalid" required>
+                            <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+                                <ul>
+                                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="imageUrlInput" class="form-label">Image URL:</label>
+                        <input id="imageUrlInput" type="text" class="form-control mb-3" th:field="*{imageUrl}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('imageUrl')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('imageUrl')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="priceInput" class="form-label">Price:</label>
+                        <input id="priceInput" type="number" class="form-control mb-3" th:field="*{price}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <section class="mb-3 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                        <button type="reset" class="btn btn-success">Reset</button>
+                    </section>
+                    </form>
+            </div>
+        </section>
 
-        <form class="">
-            <div class="my-5 fw-bold text-white">
-                <label for="titleInput" class="form-label">Title</label>
-                <input type="email" class="form-control" id="titleInput">
-            </div>
-            <div class="my-5 fw-bold text-white">
-                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-            </div>
-            <div class="my-5 fw-bold text-white">
-                <label for="priceInput" class="form-label">Price</label>
-                <input type="number" class="form-control" id="priceInput">
-            </div>
 
-            <section class="">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-success">Reset</button>
-            </section>
-        </form>
 
 
     </main>
+    <th:block th:replace="~{fragments/footerbar :: scripts}">
 
+    </th:block>
 </body>
+</html>

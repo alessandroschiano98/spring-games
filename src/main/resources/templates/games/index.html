@@ -24,6 +24,10 @@
         </section>
         <section class="row games">
             <div class="col-12">
+                <section class="mb-3 d-flex justify-content-between">
+                    <a th:href="@{/home}" class="btn btn-primary me-2">Back</a>
+                    <a th:href="@{/games/create}" class="btn btn-danger text-center">Create New Game</a>
+                </section>
                 <table class="table table-dark table-hover table-striped">
                     <thead>
                         <tr>
@@ -37,73 +41,79 @@
                     <!-- ! BUTTONS (Actions)-->
                     <tbody>
                         <tr th:each="game : ${games}" th:object="${game}">
-                            <td th:text="*{id}"></td>
-                            <td th:text="*{title}"></td>
-                            <td th:text="*{description}"></td>
-                            <!-- ! PRICE -->
-                            <td> <button type="button" class="d-inline btn btn-light btn-sm fw-bold" disabled
-                                    th:text="*{price} + ' €'"></button></td>
-                            <td>
-                                <!-- ! DETAILS -->
-                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-primary btn-sm"> <img
-                                        src="https://img.icons8.com/?size=100&id=100039&format=png&color=000000"
-                                        alt="Details icon" style="width: 20px; height: 20px;" /></a>
-                                <!-- ! EDIT (DA MODIFICARE LA ROTTA PER EDIT)--> 
-                                <a th:href="@{/games/{id}(id=*{id})}" class="btn btn-success btn-sm" title="Edit">
-                                    <img src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"
-                                        alt="Edit icon" style="width: 20px; height: 20px;" />
-                                </a>
-                                <!-- ! DELETE -->
-                                <button type="button" class="d-inline btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    th:data-bs-target="'#delete-modal-' + *{id}"> <img
-                                        src="https://img.icons8.com/?size=100&id=99950&format=png&color=000000"
-                                        alt="Delete icon" style="width: 20px; height: 20px;" /></button>
-
-                                <div class="modal fade" th:id="'delete-modal-' + *{id}" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Deleting
-                                                    <strong>"[[*{title}]]"</strong>
-                                                </h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>
-                                                    Are you sure to eliminate this game?
-                                                    <strong>"[[*{title}]]"</strong>([[*{id}]])</em>
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <form th:action="@{|/games/delete/*{id}|}" method="post"
-                                                    class="d-inline">
-                                                    <button type="submit" class="btn btn-danger btn">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                          <td th:text="*{id}"></td>
+                          <td th:text="*{title}"></td>
+                          <td th:text="*{description}"></td>
+                      
+                          <td>
+                            <button type="button" class="d-inline btn btn-light btn-sm fw-bold" disabled
+                                    th:text="*{price} + ' €'"></button>
+                          </td>
+                          <td>
+                            <!-- ! DETAILS -->
+                            <a th:href="@{/games/{id}(id=${game.id})}" class="btn btn-primary btn-sm">
+                              <img src="https://img.icons8.com/?size=100&id=100039&format=png&color=000000"
+                                   alt="Details icon" style="width: 20px; height: 20px;" />
+                            </a>
+                      
+                            <!-- ! EDIT -->
+                            <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn btn-success btn-sm" title="Edit">
+                              <img src="https://img.icons8.com/?size=100&id=15042&format=png&color=000000"
+                                   alt="Edit icon" style="width: 20px; height: 20px;" />
+                            </a>
+                      
+                            <!-- ! DELETE opens modal -->
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    th:data-bs-target="'#delete-modal-' + ${game.id}">
+                              <img src="https://img.icons8.com/?size=100&id=99950&format=png&color=000000"
+                                   alt="Delete icon" style="width: 20px; height: 20px;" />
+                            </button>
+                      
+                            <!-- ! MODAL -->
+                            <div class="modal fade" th:id="'delete-modal-' + ${game.id}" data-bs-backdrop="static"
+                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                 aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Deleting
+                                      <strong>"[[*{title}]]"</strong>
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>
+                                      Are you sure to eliminate this game?
+                                      <strong>"[[*{title}]]"</strong> (ID: [[*{id}]])
+                                    </p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                      
+                                    <!-- ! DELETE FORM -->
+                                    <form th:action="@{/games/{id}/delete(id=${game.id})}" method="post" class="d-inline">
+                                      <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                  </div>
                                 </div>
-                                
-
-                            </td>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
-                       <section class="mb-2 d-inline"> <a th:href="@{/home}" class="btn btn-primary">Back</a></section>
-                       <section class="mb-2 d-inline"> <a th:href="@{/games/create}" class="btn btn-danger">Create New Game</a></section>
-                    </tbody>
-                    
+                      </tbody>
+                      
+
                 </table>
             </div>
         </section>
 
 
     </main>
- 
 
+
+    <th:block th:replace="~{fragments/footer :: footer('schianologicsarts')}"></th:block>
     <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
 </body>
 
