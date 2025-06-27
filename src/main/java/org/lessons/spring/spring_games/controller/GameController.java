@@ -1,5 +1,6 @@
 package org.lessons.spring.spring_games.controller;
 
+
 import org.lessons.spring.spring_games.model.Game;
 import org.lessons.spring.spring_games.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class GameController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found with id: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Game not found"));
         model.addAttribute("game", game);
         return "games/edit";
     }
@@ -68,14 +69,13 @@ public class GameController {
     public String update(@PathVariable("id") Integer id,
             @Valid @ModelAttribute("game") Game formGame,
             BindingResult bindingResult, Model model) {
-        System.out.println("Update called for game id: " + id);
         if (bindingResult.hasErrors()) {
             return "games/edit";
         }
 
         formGame.setId(id);
         gameRepository.save(formGame);
-        return "redirect:/games";
+        return "redirect:/games/" + id;
     }
 
     // ! DELETE

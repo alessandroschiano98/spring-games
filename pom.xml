@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.lessons.java.spring</groupId>
-	<artifactId>spring-la-mia-pizzeria-crud</artifactId>
+	<artifactId>spring-games</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-la-mia-pizzeria-crud</name>
+	<name>spring-games</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
