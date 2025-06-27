@@ -40,14 +40,14 @@
                     </thead>
                     <!-- ! BUTTONS (Actions)-->
                     <tbody>
-                        <tr th:each="game : ${games}" th:object="${game}">
-                          <td th:text="*{id}"></td>
-                          <td th:text="*{title}"></td>
-                          <td th:text="*{description}"></td>
+                      <tr th:each="game : ${games}">
+                        <td th:text="${game.id}"></td>
+                        <td th:text="${game.title}"></td>
+                        <td th:text="${game.description}"></td>
                       
                           <td>
                             <button type="button" class="d-inline btn btn-light btn-sm fw-bold" disabled
-                                    th:text="*{price} + ' €'"></button>
+                            th:text="${game.price} + ' €'"></button>
                           </td>
                           <td>
                             <!-- ! DETAILS -->
@@ -77,7 +77,7 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Deleting
-                                      <strong>"[[*{title}]]"</strong>
+                                      <strong>"[[${game.title}]]"</strong>
                                     </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -85,7 +85,8 @@
                                   <div class="modal-body">
                                     <p>
                                       Are you sure to eliminate this game?
-                                      <strong>"[[*{title}]]"</strong> (ID: [[*{id}]])
+                                      <strong>"[[${game.title}]]"</strong> (ID: [[${game.id}]])
+
                                     </p>
                                   </div>
                                   <div class="modal-footer">
@@ -114,7 +115,7 @@
 
 
     
-    <th:block th:replace="~{fragments/footer :: scripts}"></th:block>
+    <th:block th:replace="~{fragments/footerbar :: scripts}"></th:block>
 </body>
 
 </html>

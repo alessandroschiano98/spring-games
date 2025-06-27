@@ -49,7 +49,6 @@ public class GameController {
         if (bindingResult.hasErrors()) {
             return "games/create";
         }
-
         gameRepository.save(formGame);
         return "redirect:/games";
     }
