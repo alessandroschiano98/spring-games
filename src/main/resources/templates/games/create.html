@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schianologic's Videogames Arts</title>
+</head>
+
+<body class="sfondocreate">
+
+    <header>
+        <div th:replace="~{fragments/navbar :: navbar('Schianologic Games Arts')}"></div>
+        <nav th:replace="~{fragments/head :: head('Schianologic\'s Games Arts')}"></nav>
+    </header>
+
+
+    <main class="container">
+
+        <form class="">
+            <div class="my-5 fw-bold text-white">
+                <label for="titleInput" class="form-label">Title</label>
+                <input type="email" class="form-control" id="titleInput">
+            </div>
+            <div class="my-5 fw-bold text-white">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div class="my-5 fw-bold text-white">
+                <label for="priceInput" class="form-label">Price</label>
+                <input type="number" class="form-control" id="priceInput">
+            </div>
+
+            <section class="">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-success">Reset</button>
+            </section>
+        </form>
+
+
+    </main>
+
+</body>

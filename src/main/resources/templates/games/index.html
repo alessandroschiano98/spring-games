@@ -41,7 +41,7 @@
                             <td th:text="*{title}"></td>
                             <td th:text="*{description}"></td>
                             <!-- ! PRICE -->
-                            <td> <button type="button" class="d-inline btn btn-light btn-sm" disabled
+                            <td> <button type="button" class="d-inline btn btn-light btn-sm fw-bold" disabled
                                     th:text="*{price} + ' €'"></button></td>
                             <td>
                                 <!-- ! DETAILS -->
@@ -92,7 +92,8 @@
 
                             </td>
                         </tr>
-                       <section class="mb-2"> <a th:href="@{/home}" class="btn btn-primary">Back</a></section>
+                       <section class="mb-2 d-inline"> <a th:href="@{/home}" class="btn btn-primary">Back</a></section>
+                       <section class="mb-2 d-inline"> <a th:href="@{/games/create}" class="btn btn-danger">Create New Game</a></section>
                     </tbody>
                     
                 </table>

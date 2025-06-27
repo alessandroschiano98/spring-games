@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,6 +28,30 @@ public class GameController {
         Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         return "games/show";
+    }
+
+    @GetMapping("/create")
+    public String create() {
+        return "games/create";
+    }
+
+    @PostMapping
+    public String store() {
+        return "redirect:/games";
+    }
+
+    @GetMapping("{id}/edit")
+    public String edit(){
+        return "games/edit";
+    }
+
+    public String update(){
+        return "redirect:/games";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String delete(){
+        return "redirect:/games";
     }
 
 }
