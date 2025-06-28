@@ -23,18 +23,29 @@
     background-color: black;
 }
 
+.card-title {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: xx-large;
+    color: #000000;
+}
+
+
+
 .price-box {
     display: inline-block;
     border: 1.5px solid rgb(255, 255, 255);
     padding: 2px 6px;
     border-radius: 4px;
-    color: white;         
+    color: white;
     font-weight: 600;
-    min-width: 60px;       
+    min-width: 60px;
     text-align: center;
-  }
+}
 
-  .footerbar {
+.footerbar {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -48,7 +59,7 @@
     align-items: center;
     z-index: 1000;
     font-family: "Roboto", sans-serif;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .footerbar a:hover {
