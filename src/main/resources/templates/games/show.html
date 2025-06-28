@@ -37,10 +37,12 @@
                     </div>
                     <div class="card-body">
 
-                        <h5 class="card-title fw-bold ">[[*{title}]]</h5>
-                        <p class="card-text">[[*{description}]]</p>
-                        <a th:href="@{/games}" class="btn btn-primary">Back in List</a>
-                        <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn btn-danger">Edit</a>
+                        <h5 class="card-title fw-bold text-center ">[[*{title}]]</h5>
+                        <p class="card-description text-center">[[*{description}]]</p>
+                        <div class="d-flex justify-content-between">
+                            <a th:href="@{/games}" class="btn btn-secondary">Back in List</a>
+                            <a th:href="@{/games/edit/{id}(id=${game.id})}" class="btn btn-danger">Edit</a>
+                        </div>
 
 
                     </div>
@@ -52,4 +54,5 @@
     </main>
     <th:block th:replace="~{fragments/footerbar :: scripts}"></th:block>
 </body>
+
 </html>
