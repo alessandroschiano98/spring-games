@@ -24,7 +24,7 @@
                 </ul>
             </div>
             <div class="col-12">
-                <form th:action="@{/games/create}" method="POST" th:object="${game}" id="games-creation-form">
+                <form th:action="@{/games/create}" method="POST" th:object="${game}">
 
                     <div class="my-5 fw-bold text-white">
                         <label for="titleInput" class="form-label">Title:</label>
@@ -33,6 +33,46 @@
                         <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
                             <ul>
                                 <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="developerInput" class="form-label">Developer:</label>
+                        <input id="developerInput" type="text" class="form-control mb-3" th:field="*{developer}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('developer')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('developer')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="descriptionInput" class="form-label">Description:</label>
+                        <input id="descriptionInput" type="text" class="form-control mb-3" th:field="*{description}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="genreInput" class="form-label">Genre:</label>
+                        <input id="genreInput" type="text" class="form-control mb-3" th:field="*{genre}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('genre')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('genre')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="my-5 fw-bold text-white">
+                        <label for="releaseDateInput" class="form-label">ReleaseDate:</label>
+                        <input id="releaseDateInput" type="date" class="form-control mb-3" th:field="*{releaseDate}"
+                            th:errorClass="is-invalid" required>
+                        <div th:if="${#fields.hasErrors('releaseDate')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('releaseDate')}" th:text="${err}"></li>
                             </ul>
                         </div>
                     </div>

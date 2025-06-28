@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import java.util.List;
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,17 +22,16 @@ public class GameController {
     @Autowired
     private GameRepository gameRepository;
 
-    @GetMapping
+    @GetMapping({"","/"})
     public String index(Model model) {
-        model.addAttribute("games", gameRepository.findAll());
+        List<Game> games = gameRepository.findAll();
+        model.addAttribute("games", games);
         return "games/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable(name = "id") Integer id, Model model) {
-        Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found with id: " + id));
-        ;
+        Game game = gameRepository.findById(id).get();
         model.addAttribute("game", game);
         return "games/show";
     }
@@ -74,7 +73,7 @@ public class GameController {
 
         formGame.setId(id);
         gameRepository.save(formGame);
-        return "redirect:/games/" + id;
+        return "redirect:/games/";
     }
 
     // ! DELETE
