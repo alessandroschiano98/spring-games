@@ -62,7 +62,6 @@ public class GameController {
     }
 
     // ! UPDATE
-
     @PostMapping("/edit/{id}")
     public String update(@PathVariable("id") Integer id,
             @Valid @ModelAttribute("game") Game formGame,
